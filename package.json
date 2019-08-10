@@ -1,0 +1,15 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "description": "a next to simplest CORS server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js",
+    "rec": "node main.js > tmp.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["proxy", "CORS"],
+  "author": "wu ping",
+  "license": "ISC",
+  "devDependencies": {}
+}
