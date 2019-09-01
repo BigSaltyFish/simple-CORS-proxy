@@ -21,7 +21,7 @@ const serverOrigin = 'http://127.0.0.1:8000';
 
 http.createServer(function(request, response) {
     let requestHeaders = request.headers;
-    let requestBody = '';
+    let requestBody = [];
 
     if(request.method === 'OPTIONS') {
         response.writeHead(200, {
@@ -36,12 +36,12 @@ http.createServer(function(request, response) {
     else {
         let requestBodyType = requestHeaders['content-type'].toString().split(';')[0];
         request.on('data', function (data) {
-            requestBody += data
+            requestBody.push(data)
         });
 
         request.on('end', function () {
             // console.log(`the request url: ${req.url}`);
-            let params = requestBody;
+            let params = Buffer.concat(requestBody);
 
             // console.log('the request headers: ');
             // console.log(headers);
@@ -73,7 +73,7 @@ http.createServer(function(request, response) {
 
             console.log(`the request url: ${request.url}`);
             if(requestBodyType === 'application/json') {
-                console.log(params);
+                console.log(params.toString());
             }
             else console.log(params.toString());
             forwarding.write(params);
